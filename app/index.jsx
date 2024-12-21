@@ -6,10 +6,10 @@ import './global.css';
 export default function App() {
   return (
     <View className="flex-1 flex items-center justify-center">
-      <Text className="text-blue-400">Haloo cok</Text>
+      <Text className="text-3xl font-pblack">Tensi-Edu App</Text>
       <StatusBar style="auto" />
-      <Link href="/profile" style={{ color: 'blue' }}>
-        goto profile heheh
+      <Link href="/home" style={{ color: 'blue' }}>
+        Home
       </Link>
     </View>
   );
