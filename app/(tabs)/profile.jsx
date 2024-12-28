@@ -4,7 +4,7 @@ import { Link } from 'expo-router';
 
 const Profile = () => {
   return (
-    <View>
+    <View className="flex flex-1 justify-center items-center">
       <Link href="/">Back home</Link>
       <Text>Profile</Text>
     </View>
@@ -12,5 +12,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-const styles = StyleSheet.create({});
