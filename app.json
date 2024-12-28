@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Tensi-Edu",
-    "slug": "Tensi-Edu",
+    "name": "TensiEdu",
+    "slug": "TensiEdu",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "Tensi-Edu",
+    "scheme": "TensiEdu",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
