@@ -1,4 +1,4 @@
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View } from 'react-native';
 import './global.css';
@@ -7,8 +7,12 @@ import { ScrollView } from 'react-native';
 
 import { images } from '../constants';
 import CustomButton from '../components/CustomButton';
+import { useGlobalContext } from '../context/GlobalProvider';
 
-export default function App() {
+export default function Global() {
+  const { loading, isLogged } = useGlobalContext();
+
+  if (!loading && isLogged) return <Redirect href="/home" />;
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView contentContainerStyle={{ height: '100%' }}>
@@ -29,7 +33,10 @@ export default function App() {
             <Text className="text-secondary-200 text-center text-xl mb-5">
               Stay Informed. Stay Healthy. Stay Happy.
             </Text>
-            <CustomButton title="Start Your Journey" />
+            <CustomButton
+              title="Start Your Journey"
+              handlePress={() => router.push('/sign-in')}
+            />
           </View>
         </View>
       </ScrollView>
