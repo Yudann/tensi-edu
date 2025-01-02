@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { Redirect, Tabs } from 'expo-router';
-import { Image, Text, View } from 'react-native';
-
+import { router, Tabs } from 'expo-router';
+import { Image, Text, View, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
 import { icons } from '../../constants';
+import LogoutModal from '../../components/LogoutModal'; // Import modal yang sudah dibuat
+
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
     <View className="flex items-center justify-center gap-2">
@@ -10,9 +12,9 @@ const TabIcon = ({ icon, color, name, focused }) => {
         source={icon}
         resizeMode="contain"
         style={{
-          width: 24, // Atur ukuran secara eksplisit
+          width: 24,
           height: 24,
-          tintColor: color, // Gunakan style untuk tintColor
+          tintColor: color,
         }}
       />
       <Text
@@ -26,6 +28,14 @@ const TabIcon = ({ icon, color, name, focused }) => {
 };
 
 const TabLayout = () => {
+  const [isLogoutModalVisible, setLogoutModalVisible] = useState(false);
+
+  const handleLogout = () => {
+    // Log out logic
+    router.push('/');
+    setLogoutModalVisible(false); // Close the modal after logout
+  };
+
   return (
     <>
       <Tabs
@@ -42,6 +52,7 @@ const TabLayout = () => {
             shadowOpacity: 0.1,
             shadowRadius: 8,
             elevation: 4,
+            paddingTop: 20,
           },
         }}
       >
@@ -61,21 +72,20 @@ const TabLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="bookmark"
+          name="article"
           options={{
-            title: 'Bookmark',
+            title: 'Article',
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
                 icon={icons.bookmark}
                 color={color}
-                name="Bookmark"
+                name="Article"
                 focused={focused}
               />
             ),
           }}
         />
-
         <Tabs.Screen
           name="create"
           options={{
@@ -92,21 +102,38 @@ const TabLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="profile"
+          name="logout"
           options={{
-            title: 'Profile',
+            title: 'Log Out',
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.profile}
+                icon={icons.logout} // Ganti dengan icon logout yang sesuai
                 color={color}
-                name="Profile"
+                name="Log Out"
                 focused={focused}
               />
+            ),
+            tabBarButton: () => (
+              <TouchableOpacity onPress={() => setLogoutModalVisible(true)}>
+                <TabIcon
+                  icon={icons.logout} // Ganti dengan icon logout yang sesuai
+                  color="#0d0d0d"
+                  name="Log Out"
+                  focused={false}
+                />
+              </TouchableOpacity>
             ),
           }}
         />
       </Tabs>
+
+      {/* Logout Confirmation Modal */}
+      <LogoutModal
+        isVisible={isLogoutModalVisible}
+        onClose={() => setLogoutModalVisible(false)}
+        onLogout={handleLogout}
+      />
 
       <StatusBar backgroundColor="#161622" style="light" />
     </>
