@@ -7,7 +7,8 @@ const ScreenLayout = () => {
       <Stack.Screen
         name="BloodPressure/index"
         options={{
-          headerShown: false,
+          headerShown: true, // Header tetap ditampilkan
+          title: 'Blood Pressure Tracker', // Title kustom untuk header
         }}
       />
 
@@ -15,7 +16,8 @@ const ScreenLayout = () => {
       <Stack.Screen
         name="community/index"
         options={{
-          headerShown: false, 
+          headerShown: true, // Header tetap ditampilkan
+          title: 'Community', // Title kustom untuk header
         }}
       />
     </Stack>

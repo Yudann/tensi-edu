@@ -10,6 +10,7 @@ module.exports = {
           accent: '#F4D35E', // Warna accent untuk tombol mencolok
           highlight: '#F2545B',
         },
+        'main-green': '#75d3c8',
         black: {
           DEFAULT: '#000',
           100: '#1E1E2D', // Untuk teks utama dengan kontras tinggi

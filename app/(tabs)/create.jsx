@@ -3,7 +3,7 @@ import React from 'react';
 
 const Create = () => {
   return (
-    <View className="flex flex-1 justify-center items-center">
+    <View className="flex flex-1 justify-center items-center bg-primary">
       <Text>Create</Text>
     </View>
   );

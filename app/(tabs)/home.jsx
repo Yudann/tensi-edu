@@ -30,7 +30,7 @@ const getBloodPressureStatus = (systolic, diastolic) => {
 };
 
 const Home = () => {
-  const { bloodPressure } = useBloodPressure(); 
+  const { bloodPressure } = useBloodPressure();
 
   const { status, color } = getBloodPressureStatus(
     bloodPressure.systolic,
@@ -42,7 +42,11 @@ const Home = () => {
       {/* Header Section */}
       <View className="flex-row justify-between items-center p-4 rounded-lg mb-4">
         <View className="flex flex-row items-center justify-center">
-          <FaUser size={24} color="black" className="mr-4" />
+          <FaUser
+            size={50}
+            color="black"
+            className="mr-4 rounded-full border border-white p-2"
+          />
           <View>
             <Text className="text-xl font-bold text-black">
               {getGreeting()}
