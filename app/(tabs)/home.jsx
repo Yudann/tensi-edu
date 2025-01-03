@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { FaBell, FaChalkboardTeacher, FaUser, FaUsers } from 'react-icons/fa';
 import { Link } from 'expo-router';
 import { useBloodPressure } from '../../context/BloodPressureContext'; // Import useBloodPressure
+import { ScrollView } from 'react-native-web';
 
 const getGreeting = () => {
   const hour = new Date().getHours();
@@ -38,7 +39,7 @@ const Home = () => {
   );
 
   return (
-    <View className="flex-1 bg-primary p-4">
+    <ScrollView className="flex-1 bg-primary p-4">
       {/* Header Section */}
       <View className="flex-row justify-between items-center p-4 rounded-lg mb-4">
         <View className="flex flex-row items-center justify-center">
@@ -105,16 +106,18 @@ const Home = () => {
 
       {/* Main Features */}
       <View className="flex-row justify-between mb-4">
-        <View className="bg-white rounded-xl p-4 w-[48%] items-center shadow cursor-pointer">
-          <FaChalkboardTeacher color="#FF5722" size={48} />
-          <Text className="text-base font-bold text-gray-700 text-center mt-2">
-            Content Education
-          </Text>
-        </View>
+        <Link href="/videos" className="w-[48%]">
+          <View className="bg-white rounded-xl p-4 w-full items-center shadow cursor-pointer">
+            <FaChalkboardTeacher color="#FF5722" size={48} />
+            <Text className="text-sm font-bold text-gray-700 text-center mt-2">
+              Content Education
+            </Text>
+          </View>
+        </Link>
         <Link href="/community" className="w-[48%]">
           <View className="bg-white rounded-xl p-4 w-full items-center shadow cursor-pointer">
             <FaUsers color="#03A9F4" size={48} />
-            <Text className="text-base font-bold text-gray-700 text-center mt-2">
+            <Text className="text-sm font-bold text-gray-700 text-center mt-2">
               Support Community
             </Text>
           </View>
@@ -126,7 +129,7 @@ const Home = () => {
         <FaBell color="black" size={48} />
         <Text className="text-lg font-bold text-orange-600 mb-2">Reminder</Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
