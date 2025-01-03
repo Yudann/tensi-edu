@@ -20,6 +20,13 @@ const ScreenLayout = () => {
           title: 'Community', // Title kustom untuk header
         }}
       />
+      <Stack.Screen
+        name="article/[id]"
+        options={{
+          headerShown: true,
+          title: 'Back',
+        }}
+      />
     </Stack>
   );
 };
