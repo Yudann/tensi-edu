@@ -1,4 +1,9 @@
-import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 
 const CustomButton = ({
   title,
@@ -11,25 +16,48 @@ const CustomButton = ({
     <TouchableOpacity
       onPress={handlePress}
       activeOpacity={0.7}
-      className={`bg-secondary rounded-xl min-h-[62px] flex flex-row justify-center items-center ${containerStyles} ${
-        isLoading ? "opacity-50" : ""
-      }`}
+      style={[
+        styles.buttonContainer,
+        isLoading && styles.disabledButton,
+        containerStyles,
+      ]}
       disabled={isLoading}
     >
-      <Text className={`text-primary font-psemibold text-lg ${textStyles}`}>
-        {title}
-      </Text>
+      <Text style={[styles.buttonText, textStyles]}>{title}</Text>
 
       {isLoading && (
         <ActivityIndicator
           animating={isLoading}
           color="#fff"
           size="small"
-          className="ml-2"
+          style={styles.indicator}
         />
       )}
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    backgroundColor: '#1F7A8C', // Ganti dengan warna Anda
+    borderRadius: 16, // Untuk rounded-xl
+    minHeight: 62,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  disabledButton: {
+    opacity: 0.5,
+  },
+  buttonText: {
+    color: 'white', // Ganti dengan warna Anda
+    fontFamily: 'Poppins-SemiBold', // Ganti dengan font Anda
+    fontSize: 18, // Untuk text-lg
+  },
+  indicator: {
+    marginLeft: 8, // Untuk ml-2
+  },
+});
 
 export default CustomButton;

@@ -1,7 +1,6 @@
 import { Link, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Image, Text, View, ImageBackground, StyleSheet } from 'react-native';
-import './global.css';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
 import * as Notifications from 'expo-notifications';
@@ -37,25 +36,24 @@ export default function Global() {
   }, []);
 
   if (!loading && isLogged) return <Redirect href="/home" />;
+
   return (
     <ImageBackground
       source={require('../assets/bg-main.jpg')}
       style={styles.background}
       imageStyle={styles.fixedImage}
     >
-      <SafeAreaView className="bg-transparent h-full">
-        <ScrollView contentContainerStyle={{ height: '100%' }}>
-          <View className="w-full justify-center items-center min-h-[85vh] px-4">
+      <SafeAreaView style={styles.safeAreaView}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+          <View style={styles.mainContainer}>
             <Image
               source={images.logo}
-              style={{ width: 350, height: 350 }}
+              style={styles.logo}
               resizeMode="contain"
             />
-            <View className="relative">
-              <Text className="text-3xl text-black font-bold text-center">
-                Your Personal Health Companion
-              </Text>
-              <Text className="text-secondary-200 text-center text-xl mb-5">
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>Your Personal Health Companion</Text>
+              <Text style={styles.subtitle}>
                 Stay Informed. Stay Healthy. Stay Happy.
               </Text>
               <CustomButton
@@ -79,5 +77,41 @@ const styles = StyleSheet.create({
   },
   fixedImage: {
     resizeMode: 'cover',
+  },
+  safeAreaView: {
+    backgroundColor: 'transparent',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  scrollViewContent: {
+    height: '100%',
+  },
+  mainContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '85%',
+    paddingHorizontal: 16,
+  },
+  logo: {
+    width: 350,
+    height: 350,
+  },
+  textContainer: {
+    position: 'relative',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'black',
+  },
+  subtitle: {
+    fontSize: 18,
+    color: '#6b7280', // Sesuai dengan Tailwind warna secondary-200
+    textAlign: 'center',
+    marginBottom: 20,
   },
 });
