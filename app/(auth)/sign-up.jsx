@@ -12,14 +12,9 @@ import {
 } from 'react-native';
 
 import { images } from '../../constants';
-import { createUser } from '../../lib/appwrite';
 import { CustomButton, FormField } from '../../components';
-import { useGlobalContext } from '../../context/GlobalProvider';
-import { ImageBackground } from 'react-native-web';
 
 export default function Signup() {
-  const { setUser, setIsLogged } = useGlobalContext();
-
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     username: '',
@@ -30,15 +25,18 @@ export default function Signup() {
   const submit = async () => {
     if (form.username === '' || form.email === '' || form.password === '') {
       Alert.alert('Error', 'Please fill in all fields');
+      return;
     }
-
     setSubmitting(true);
+
     try {
+      // Asumsikan createUser adalah fungsi untuk register pengguna
       const result = await createUser(form.email, form.password, form.username);
+      // Set user di context
       setUser(result);
       setIsLogged(true);
 
-      router.replace('/home');
+      router.replace('/Home');
     } catch (error) {
       Alert.alert('Error', error.message);
     } finally {
@@ -47,41 +45,35 @@ export default function Signup() {
   };
 
   return (
-    <ImageBackground
-      source={require('../../assets/bg-main.jpg')} // Path ke background Anda
-      style={styles.background}
-      imageStyle={styles.fixedImage}
-    >
-      <SafeAreaView className="h-full">
-        <ScrollView>
-          <View
-            className="w-full flex justify-center h-full px-4 my-6"
-            style={{
-              minHeight: Dimensions.get('window').height - 100,
-            }}
-          >
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.backgroundContainer}>
+          <Image
+            source={require('../../assets/bg-main.jpg')} // Pastikan path gambar benar
+            style={styles.backgroundImage}
+          />
+
+          <View style={styles.content}>
             <Image
-              source={images.logo}
+              source={images.logo} // Pastikan logo juga ada di folder images
               resizeMode="contain"
-              className="w-[115px] h-[34px] self-center"
+              style={styles.logo}
             />
 
-            <Text className="text-2xl font-semibold text-black mt-10 font-psemibold">
-              Sign Up to Tensi Edu
-            </Text>
+            <Text style={styles.title}>Sign Up to Tensi Edu</Text>
 
             <FormField
               title="Username"
               value={form.username}
               handleChangeText={(e) => setForm({ ...form, username: e })}
-              otherStyles="mt-10"
+              otherStyles={styles.input}
             />
 
             <FormField
               title="Email"
               value={form.email}
               handleChangeText={(e) => setForm({ ...form, email: e })}
-              otherStyles="mt-7"
+              otherStyles={styles.input}
               keyboardType="email-address"
             />
 
@@ -89,41 +81,82 @@ export default function Signup() {
               title="Password"
               value={form.password}
               handleChangeText={(e) => setForm({ ...form, password: e })}
-              otherStyles="mt-7"
+              otherStyles={styles.input}
             />
 
             <CustomButton
               title="Sign Up"
               handlePress={submit}
-              containerStyles="mt-7"
+              containerStyles={styles.button}
               isLoading={isSubmitting}
             />
 
-            <View className="flex justify-center pt-5 flex-row gap-2">
-              <Text className="text-lg text-gray-500 font-pregular">
-                Have an account already?
-              </Text>
-              <Link
-                href="/sign-in"
-                className="text-lg font-psemibold text-secondary"
-              >
+            <View style={styles.signupContainer}>
+              <Text style={styles.signupText}>Have an account already?</Text>
+              <Link href="/sign-in" style={styles.signupLink}>
                 Login
               </Link>
             </View>
           </View>
-        </ScrollView>
-      </SafeAreaView>
-    </ImageBackground>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
+  },
+  backgroundContainer: {
+    position: 'relative',
+    width: '100%',
+    height: Dimensions.get('window').height,
+  },
+  backgroundImage: {
+    position: 'absolute',
     width: '100%',
     height: '100%',
+    resizeMode: 'cover',
   },
-  fixedImage: {
-    resizeMode: 'cover', // Pastikan gambar mengisi layar dengan baik
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 40,
+  },
+  logo: {
+    width: 115,
+    height: 34,
+    alignSelf: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#000',
+    marginTop: 20,
+  },
+  input: {
+    marginTop: 20,
+    width: '100%',
+  },
+  button: {
+    marginTop: 20,
+  },
+  signupContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+    justifyContent: 'center',
+  },
+  signupText: {
+    fontSize: 16,
+    color: '#7D7D7D',
+  },
+  signupLink: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FF6F61',
+    marginLeft: 5,
   },
 });
