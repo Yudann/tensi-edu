@@ -5,7 +5,7 @@ import { Link } from 'expo-router';
 import { useBloodPressure } from '../../context/BloodPressureContext'; // Import useBloodPressure
 import { ScrollView } from 'react-native-web';
 
-const getGreeting = () => {
+const GetGreeting = () => {
   const hour = new Date().getHours();
   if (hour < 12) return 'Good Morning';
   if (hour < 18) return 'Good Afternoon';
@@ -13,7 +13,7 @@ const getGreeting = () => {
 };
 
 // Fungsi untuk menentukan status tekanan darah
-const getBloodPressureStatus = (systolic, diastolic) => {
+const GetBloodPressureStatus = (systolic, diastolic) => {
   if (systolic <= 120 && diastolic <= 80) {
     return { status: 'Normal', color: 'green' };
   } else if (systolic >= 120 && systolic <= 129 && diastolic < 80) {
@@ -33,7 +33,7 @@ const getBloodPressureStatus = (systolic, diastolic) => {
 const Home = () => {
   const { bloodPressure } = useBloodPressure();
 
-  const { status, color } = getBloodPressureStatus(
+  const { status, color } = GetBloodPressureStatus(
     bloodPressure.systolic,
     bloodPressure.diastolic,
   );
@@ -50,7 +50,7 @@ const Home = () => {
           />
           <View>
             <Text className="text-xl font-bold text-black">
-              {getGreeting()}
+              {GetGreeting()}
             </Text>
             <Text className="text-sm text-gray-600">
               How do you feel today?
@@ -125,10 +125,14 @@ const Home = () => {
       </View>
 
       {/* Reminder Section */}
-      <View className="bg-yellow-200 rounded-xl p-6 items-center cursor-pointer">
-        <FaBell color="black" size={48} />
-        <Text className="text-lg font-bold text-orange-600 mb-2">Reminder</Text>
-      </View>
+      <Link href="/reminder" className="w-full">
+        <View className="bg-yellow-200 rounded-xl p-6 w-full items-center cursor-pointer">
+          <FaBell color="black" size={48} />
+          <Text className="text-lg font-bold text-orange-600 mb-2">
+            Reminder
+          </Text>
+        </View>
+      </Link>
     </ScrollView>
   );
 };
