@@ -2,14 +2,11 @@ import { View, Text, TouchableOpacity, Linking } from 'react-native';
 import { FaComments, FaQuestion, FaUsers } from 'react-icons/fa';
 
 const Community = () => {
-  // Fungsi untuk membuka tautan WhatsApp
-  const openWhatsApp = (message) => {
-    const phoneNumber = '628123456789'; // Ganti dengan nomor WhatsApp tujuan
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message,
-    )}`;
+  // Fungsi untuk membuka tautan grup WhatsApp
+  const openWhatsAppGroup = () => {
+    const url = 'https://chat.whatsapp.com/KaAH1TW0orS4UP2UOXeXM0';
     Linking.openURL(url).catch((err) =>
-      console.error('Failed to open WhatsApp:', err),
+      console.error('Failed to open WhatsApp group:', err),
     );
   };
 
@@ -30,7 +27,7 @@ const Community = () => {
           {/* Tombol Join */}
           <TouchableOpacity
             className="bg-secondary py-3 px-6 rounded-lg w-[130px] flex items-center"
-            onPress={() => openWhatsApp('I want to join the community!')}
+            onPress={openWhatsAppGroup}
           >
             <Text className="text-white text-lg font-bold">Join</Text>
           </TouchableOpacity>
@@ -38,9 +35,7 @@ const Community = () => {
           {/* Tombol Ask Question */}
           <TouchableOpacity
             className="bg-secondary py-3 px-6 rounded-lg w-[130px] flex items-center"
-            onPress={() =>
-              openWhatsApp('I have a question about the community.')
-            }
+            onPress={openWhatsAppGroup}
           >
             <Text className="text-white text-lg font-bold ">Question</Text>
           </TouchableOpacity>
@@ -52,7 +47,7 @@ const Community = () => {
         {/* Card Group */}
         <TouchableOpacity
           className="flex-1 h-[150px] bg-main-green shadow-md rounded-xl items-center justify-center"
-          onPress={() => openWhatsApp('Tell me about groups in the community.')}
+          onPress={openWhatsAppGroup}
         >
           <FaUsers className="fill-primary" size={50} />
           <Text className="text-black mt-2 font-semibold">Group</Text>
@@ -61,9 +56,7 @@ const Community = () => {
         {/* Card Post Question */}
         <TouchableOpacity
           className="flex-1 h-[150px] bg-main-green shadow-md rounded-xl items-center justify-center"
-          onPress={() =>
-            openWhatsApp('I want to post a question in the community.')
-          }
+          onPress={openWhatsAppGroup}
         >
           <FaQuestion className="fill-primary" size={50} />
           <Text className="text-black mt-2 font-semibold">Post Question</Text>
@@ -72,9 +65,7 @@ const Community = () => {
         {/* Card Discussion */}
         <TouchableOpacity
           className="flex-1 h-[150px] bg-main-green shadow-md rounded-xl items-center justify-center"
-          onPress={() =>
-            openWhatsApp('I want to join a discussion in the community.')
-          }
+          onPress={openWhatsAppGroup}
         >
           <FaComments className="fill-primary" size={50} />
           <Text className="text-black mt-2 font-semibold">Discussion</Text>
