@@ -1,19 +1,13 @@
-import profile from '../assets/images/profile.png';
-import thumbnail from '../assets/images/thumbnail.png';
-import cards from '../assets/images/cards.png';
-import path from '../assets/images/path.png';
 import logo from '../assets/images/logo.png';
-import logoSmall from '../assets/images/logo-small.png';
-import empty from '../assets/images/empty.png';
 import logout from '../assets/icons/logout.png';
+import poster1 from '../assets/images/poster1.jpeg';
+import poster2 from '../assets/images/poster2.jpeg';
+import poster3 from '../assets/images/poster3.jpeg';
 
 export default {
-  profile,
-  thumbnail,
-  cards,
-  path,
   logo,
-  logoSmall,
-  empty,
   logout,
+  poster1,
+  poster2,
+  poster3,
 };
