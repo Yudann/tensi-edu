@@ -7,58 +7,40 @@ import {
   StyleSheet,
   Linking,
   Platform,
+  Image,
 } from 'react-native';
+import { images } from '../../constants';
 
 const videos = [
   {
     id: '1',
-    title: 'Manfaat Olahraga untuk Kesehatan',
-    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    title: 'Edukasi Pencegahan Hipertensi',
+    url: 'https://www.youtube.com/watch?v=FpMsKPIp634',
   },
   {
     id: '2',
-    title: 'Tips Pola Makan Sehat',
-    url: 'https://www.youtube.com/watch?v=9bZkp7q19f0',
+    title: 'Mencegah Hipertensi Sejak Dini',
+    url: 'https://www.youtube.com/watch?v=qs2c7P-15jY',
   },
   {
     id: '3',
-    title: 'Panduan Meditasi untuk Pemula',
-    url: 'https://www.youtube.com/watch?v=tgbNymZ7vqY',
+    title: 'Faktor Risiko Hipertensi dan Cara Mencegahnya',
+    url: 'https://www.youtube.com/watch?v=kHY8paJcJo4',
   },
   {
     id: '4',
-    title: 'Olahraga Ringan di Rumah',
-    url: 'https://www.youtube.com/watch?v=O1lUe7UOQCg',
+    title: 'Pencegahan dan Pengendalian Hipertensi',
+    url: 'https://www.youtube.com/watch?v=2JVUMyO0Fg4',
   },
   {
     id: '5',
-    title: 'Cara Menjaga Kesehatan Mental',
-    url: 'https://www.youtube.com/watch?v=2Vv-BfVoq4g',
+    title: 'Edukasi Hipertensi',
+    url: 'https://www.youtube.com/watch?v=kHY8paJcJo4',
   },
   {
     id: '6',
-    title: 'Pentingnya Tidur Berkualitas',
-    url: 'https://www.youtube.com/watch?v=kJQP7kiw5Fk',
-  },
-  {
-    id: '7',
-    title: 'Langkah Hidup Sehat dengan Yoga',
-    url: 'https://www.youtube.com/watch?v=3JZ_D3ELwOQ',
-  },
-  {
-    id: '8',
-    title: 'Manfaat Air Putih untuk Tubuh',
-    url: 'https://www.youtube.com/watch?v=MG5V0ZxE9O4',
-  },
-  {
-    id: '9',
-    title: 'Keseimbangan Hidup dan Kerja',
-    url: 'https://www.youtube.com/watch?v=Z0GFRcFm-aY',
-  },
-  {
-    id: '10',
-    title: 'Olahraga di Pagi Hari',
-    url: 'https://www.youtube.com/watch?v=IcrbM1l_BoI',
+    title: 'Hipertensi Si Pembunuh Senyap',
+    url: 'https://www.youtube.com/watch?v=RBfBhZfHHGo',
   },
 ];
 
@@ -100,6 +82,14 @@ const Videos = () => {
           </TouchableOpacity>
         </View>
       ))}
+      <View style={styles.posterSection}>
+        <Text style={styles.sectionTitle}>Poster Edukasi</Text>
+        <View style={styles.posterContainer}>
+          <Image source={images.poster1} style={styles.posterImage} />
+          <Image source={images.poster2} style={styles.posterImage} />
+          <Image source={images.poster3} style={styles.posterImage} />
+        </View>
+      </View>
     </ScrollView>
   );
 };
@@ -107,7 +97,7 @@ const Videos = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#DAEEEB',
     paddingHorizontal: 10,
     paddingVertical: 20,
   },
@@ -151,6 +141,31 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     fontSize: 16,
+  },
+  posterSection: {
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
+  posterContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 10,
+    width: '100%',
+    height: 'auto',
+    marginBottom: 10,
+  },
+  posterImage: {
+    width: '100%',
+    height: 'auto', // Lebar 30% dari kontainer
+    aspectRatio: 1, // Menjaga rasio 1:1 (lebar = tinggi)
+    borderRadius: 8,
   },
 });
 
