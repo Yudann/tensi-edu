@@ -21,10 +21,17 @@ const ScreenLayout = () => {
         }}
       />
       <Stack.Screen
-        name="article/[id]"
+        name="articles/[id]"
         options={{
           headerShown: true,
           title: 'Back',
+        }}
+      />
+      <Stack.Screen
+        name="reminder/index"
+        options={{
+          headerShown: true,
+          title: 'Reminder',
         }}
       />
     </Stack>
