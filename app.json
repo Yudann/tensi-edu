@@ -8,13 +8,17 @@
     "scheme": "TensiEdu",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.png",
         "backgroundColor": "#ffffff"
+      },
+      "useNextNotificationsApi": true
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSUserNotificationUsageDescription": "This app uses notifications to remind you of important events."
       }
     },
     "web": {

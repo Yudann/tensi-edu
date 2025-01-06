@@ -3,15 +3,18 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-, "app/_layout.jsx", "app/(screen)/community/index.jsx"  ]
+    "expo-env.d.ts",
+    "app/_layout.jsx",
+    "app/(screen)/community/index.jsx",
+    "app/(screen)/reminder/index.jsx",
+    "app/(screen)/reminder/addReminder/index.jsx",
+    "app/(screen)/articles/ArticlesData.js"
+  ]
 }
