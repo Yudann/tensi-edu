@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AddReminder() {
   const router = useRouter();
@@ -11,20 +12,15 @@ export default function AddReminder() {
   const saveReminder = async () => {
     if (time && description) {
       try {
-        // Ambil data reminder yang sudah ada
         const existingReminders = await AsyncStorage.getItem('reminders');
         const reminders = existingReminders
           ? JSON.parse(existingReminders)
           : [];
 
-        // Tambahkan reminder baru
         const newReminder = { id: Date.now(), time, description };
         reminders.push(newReminder);
 
-        // Simpan kembali ke AsyncStorage
         await AsyncStorage.setItem('reminders', JSON.stringify(reminders));
-
-        // Kembali ke halaman reminder
         router.push('/reminder');
       } catch (error) {
         console.error('Failed to save reminder:', error);
@@ -33,32 +29,61 @@ export default function AddReminder() {
   };
 
   return (
-    <View className="flex-1 bg-primary p-4">
-      <Text className="text-xl font-bold text-black mb-4">Tambah Reminder</Text>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: '#DAEEEB', paddingHorizontal: 16 }}
+    >
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: 'bold',
+          color: '#000',
+          marginBottom: 16,
+        }}
+      >
+        Tambah Reminder
+      </Text>
 
-      {/* Input waktu */}
       <TextInput
         value={time}
         onChangeText={setTime}
+        placeholderTextColor="#888"
         placeholder="Masukkan waktu (contoh: 16:00)"
-        className="w-full bg-white p-3 rounded mb-2"
+        style={{
+          width: '100%',
+          backgroundColor: '#fff',
+          padding: 12,
+          borderRadius: 8,
+          marginBottom: 8,
+          color: '#000',
+        }}
       />
 
-      {/* Input deskripsi */}
       <TextInput
         value={description}
         onChangeText={setDescription}
+        placeholderTextColor="#888"
         placeholder="Masukkan deskripsi (contoh: Minum obat)"
-        className="w-full bg-white p-3 rounded mb-2"
+        style={{
+          width: '100%',
+          backgroundColor: '#fff',
+          padding: 12,
+          borderRadius: 8,
+          marginBottom: 8,
+          color: '#000',
+        }}
       />
 
-      {/* Tombol simpan */}
       <TouchableOpacity
         onPress={saveReminder}
-        className="bg-secondary p-3 rounded items-center"
+        style={{
+          backgroundColor: '#007BFF',
+          padding: 12,
+          borderRadius: 8,
+          alignItems: 'center',
+        }}
       >
-        <Text className="text-white font-bold">Simpan</Text>
+        <Text style={{ color: '#fff', fontWeight: 'bold' }}>Simpan</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }

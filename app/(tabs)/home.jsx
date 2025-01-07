@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { FaBell, FaChalkboardTeacher, FaUser, FaUsers } from 'react-icons/fa';
+import { View, Text, ScrollView } from 'react-native';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons'; // Ganti pustaka ikon
 import { Link } from 'expo-router';
-import { useBloodPressure } from '../../context/BloodPressureContext'; // Import useBloodPressure
-import { ScrollView } from 'react-native-web';
+import { useBloodPressure } from '../../context/BloodPressureContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const GetGreeting = () => {
   const hour = new Date().getHours();
@@ -39,101 +39,198 @@ const Home = () => {
   );
 
   return (
-    <ScrollView className="flex-1 bg-primary p-4">
-      {/* Header Section */}
-      <View className="flex-row justify-between items-center p-4 rounded-lg mb-4">
-        <View className="flex flex-row items-center justify-center">
-          <FaUser
-            size={50}
-            color="black"
-            className="mr-4 rounded-full border border-white p-2"
-          />
-          <View>
-            <Text className="text-xl font-bold text-black">
-              {GetGreeting()}
-            </Text>
-            <Text className="text-sm text-gray-600">
-              How do you feel today?
-            </Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#DAEEEB' }}>
+      <ScrollView style={{ flex: 1, backgroundColor: '#DAEEEB', padding: 16 }}>
+        {/* Header Section */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: 16,
+            borderRadius: 8,
+            marginBottom: 16,
+            backgroundColor: '#fff',
+          }}
+        >
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <FontAwesome
+              name="user-circle"
+              size={40}
+              color="black"
+              style={{ marginRight: 16 }}
+            />
+            <View>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000' }}>
+                {GetGreeting()}
+              </Text>
+              <Text style={{ fontSize: 14, color: '#666' }}>
+                How do you feel today?
+              </Text>
+            </View>
           </View>
+          <MaterialIcons name="notifications" size={24} color="black" />
         </View>
-        <View className="flex-row items-center">
-          <FaBell size={24} color="black" className="mr-4" />
-        </View>
-      </View>
 
-      {/* Blood Pressure Section */}
-      <Link href="/BloodPressure" className="w-full">
-        <View className="bg-sky-200 rounded-xl p-6 items-center mb-4 w-full">
+        {/* Blood Pressure Section */}
+        <Link href="/BloodPressure">
           <View
-            className={`w-28 h-28 rounded-full justify-center items-center border-8 ${
-              color === 'green'
-                ? 'border-green-600'
-                : color === 'yellow'
-                  ? 'border-yellow-600'
-                  : color === 'red'
-                    ? 'border-red-600'
-                    : color === 'pink'
-                      ? 'border-pink-600'
-                      : 'border-blue-500'
-            }`}
+            style={{
+              backgroundColor: '#E0F7FA',
+              borderRadius: 16,
+              padding: 24,
+              alignItems: 'center',
+              marginBottom: 16,
+              width: '100%',
+            }}
           >
-            <Text
-              className={`text-2xl font-bold ${
-                color === 'green' ? 'text-green-600' : ''
-              } ${color === 'yellow' ? 'text-yellow-600' : ''} ${
-                color === 'red' ? 'text-red-600' : ''
-              } ${color === 'pink' ? 'text-pink-600' : ''}`}
+            <View
+              style={{
+                width: 112,
+                height: 112,
+                borderRadius: 56,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderWidth: 8,
+                borderColor:
+                  color === 'green'
+                    ? '#4CAF50'
+                    : color === 'yellow'
+                      ? '#FFEB3B'
+                      : color === 'red'
+                        ? '#F44336'
+                        : '#2196F3',
+              }}
             >
-              {bloodPressure.systolic}/{bloodPressure.diastolic}
-            </Text>
-          </View>
+              <Text
+                style={{
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                  color:
+                    color === 'green'
+                      ? '#4CAF50'
+                      : color === 'yellow'
+                        ? '#FFEB3B'
+                        : color === 'red'
+                          ? '#F44336'
+                          : '#000',
+                }}
+              >
+                {bloodPressure.systolic}/{bloodPressure.diastolic}
+              </Text>
+            </View>
 
-          <View className="flex-row items-center mt-4">
-            {/* Menampilkan status berdasarkan logika */}
             <Text
-              className={`text-lg font-bold ${color === 'green' ? 'text-green-600' : ''} 
-                               ${color === 'yellow' ? 'text-yellow-600' : ''} 
-                               ${color === 'orange' ? 'text-orange-600' : ''} 
-                               ${color === 'red' ? 'text-red-600' : ''} 
-                               ${color === 'darkred' ? 'text-darkred' : ''}`}
+              style={{
+                marginTop: 16,
+                fontSize: 18,
+                fontWeight: 'bold',
+                color:
+                  color === 'green'
+                    ? '#4CAF50'
+                    : color === 'yellow'
+                      ? '#FFEB3B'
+                      : color === 'orange'
+                        ? '#FF9800'
+                        : color === 'red'
+                          ? '#F44336'
+                          : '#000',
+              }}
             >
               {status}
             </Text>
           </View>
-        </View>
-      </Link>
+        </Link>
 
-      {/* Main Features */}
-      <View className="flex-row justify-between mb-4">
-        <Link href="/videos" className="w-[48%]">
-          <View className="bg-white rounded-xl p-4 w-full items-center shadow cursor-pointer">
-            <FaChalkboardTeacher color="#FF5722" size={48} />
-            <Text className="text-sm font-bold text-gray-700 text-center mt-2">
-              Content Education
+        {/* Main Features */}
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginBottom: 16,
+            marginTop: 16,
+          }}
+        >
+          <Link href="/videos" style={{ width: '48%' }}>
+            <View
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: 16,
+                padding: 16,
+                alignItems: 'center',
+                shadowColor: '#000',
+                shadowOpacity: 0.1,
+                width: '100%',
+              }}
+            >
+              <FontAwesome name="video-camera" size={48} color="#FF5722" />
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  color: '#555',
+                  textAlign: 'center',
+                  marginTop: 8,
+                }}
+              >
+                Content Education
+              </Text>
+            </View>
+          </Link>
+          <Link href="/community" style={{ width: '48%' }}>
+            <View
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: 16,
+                padding: 16,
+                alignItems: 'center',
+                shadowColor: '#000',
+                shadowOpacity: 0.1,
+                width: '100%',
+              }}
+            >
+              <FontAwesome name="users" size={48} color="#03A9F4" />
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontWeight: 'bold',
+                  color: '#555',
+                  textAlign: 'center',
+                  marginTop: 8,
+                }}
+              >
+                Support Community
+              </Text>
+            </View>
+          </Link>
+        </View>
+
+        {/* Reminder Section */}
+        <Link href="/reminder">
+          <View
+            style={{
+              backgroundColor: '#FFF9C4',
+              borderRadius: 16,
+              padding: 24,
+              alignItems: 'center',
+              width: '100%',
+            }}
+          >
+            <MaterialIcons name="notifications" size={48} color="black" />
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: 'bold',
+                color: '#FB8C00',
+                marginTop: 8,
+              }}
+            >
+              Reminder
             </Text>
           </View>
         </Link>
-        <Link href="/community" className="w-[48%]">
-          <View className="bg-white rounded-xl p-4 w-full items-center shadow cursor-pointer">
-            <FaUsers color="#03A9F4" size={48} />
-            <Text className="text-sm font-bold text-gray-700 text-center mt-2">
-              Support Community
-            </Text>
-          </View>
-        </Link>
-      </View>
-
-      {/* Reminder Section */}
-      <Link href="/reminder" className="w-full">
-        <View className="bg-yellow-200 rounded-xl p-6 w-full items-center cursor-pointer">
-          <FaBell color="black" size={48} />
-          <Text className="text-lg font-bold text-orange-600 mb-2">
-            Reminder
-          </Text>
-        </View>
-      </Link>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

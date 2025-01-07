@@ -9,6 +9,8 @@ import {
   Platform,
   Image,
 } from 'react-native';
+import YoutubePlayer from 'react-native-youtube-iframe';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../../constants';
 
 const videos = [
@@ -44,53 +46,48 @@ const videos = [
   },
 ];
 
+const getYouTubeId = (url) => {
+  const regExp =
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+  const match = url.match(regExp);
+  return match ? match[1] : null;
+};
+
 const Videos = () => {
   const handleRedirect = (url) => {
-    if (Platform.OS !== 'web') {
-      Linking.openURL(url);
-    } else {
-      window.open(url, '_blank');
-    }
+    Linking.openURL(url);
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.header}>Koleksi Video Kesehatan</Text>
-      {videos.map((video) => (
-        <View key={video.id} style={styles.card}>
-          {/* Gunakan iframe untuk platform web */}
-          {Platform.OS === 'web' ? (
-            <iframe
-              width="100%"
-              height="200"
-              src={`${video.url.replace('watch?v=', 'embed/')}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          ) : (
-            // Tampilkan placeholder di platform non-web
-            <View style={styles.placeholder}>
-              <Text style={styles.placeholderText}>{video.title}</Text>
-            </View>
-          )}
-          <TouchableOpacity
-            onPress={() => handleRedirect(video.url)}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>Tonton di YouTube</Text>
-          </TouchableOpacity>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <Text style={styles.header}>Koleksi Video Kesehatan</Text>
+        {videos.map((video) => (
+          <View key={video.id} style={styles.card}>
+            {/* Gunakan YoutubePlayer untuk semua platform */}
+            <YoutubePlayer
+              height={200}
+              videoId={getYouTubeId(video.url)}
+              play={false}
+            />
+            <TouchableOpacity
+              onPress={() => handleRedirect(video.url)}
+              style={styles.button}
+            >
+              <Text style={styles.buttonText}>Tonton di YouTube</Text>
+            </TouchableOpacity>
+          </View>
+        ))}
+        <View style={styles.posterSection}>
+          <Text style={styles.sectionTitle}>Poster Edukasi</Text>
+          <View style={styles.posterContainer}>
+            <Image source={images.poster1} style={styles.posterImage} />
+            <Image source={images.poster2} style={styles.posterImage} />
+            <Image source={images.poster3} style={styles.posterImage} />
+          </View>
         </View>
-      ))}
-      <View style={styles.posterSection}>
-        <Text style={styles.sectionTitle}>Poster Edukasi</Text>
-        <View style={styles.posterContainer}>
-          <Image source={images.poster1} style={styles.posterImage} />
-          <Image source={images.poster2} style={styles.posterImage} />
-          <Image source={images.poster3} style={styles.posterImage} />
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -99,7 +96,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#DAEEEB',
     paddingHorizontal: 10,
-    paddingVertical: 20,
+    paddingVertical: 0,
+    marginVertical: 0,
   },
   header: {
     fontSize: 20,
@@ -118,17 +116,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
-  },
-  placeholder: {
-    backgroundColor: '#ccc',
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  placeholderText: {
-    color: '#555',
-    fontSize: 16,
   },
   button: {
     backgroundColor: '#007BFF',
@@ -163,8 +150,8 @@ const styles = StyleSheet.create({
   },
   posterImage: {
     width: '100%',
-    height: 'auto', // Lebar 30% dari kontainer
-    aspectRatio: 1, // Menjaga rasio 1:1 (lebar = tinggi)
+    height: 'auto',
+    aspectRatio: 1,
     borderRadius: 8,
   },
 });

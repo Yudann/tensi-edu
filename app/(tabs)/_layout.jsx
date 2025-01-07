@@ -7,7 +7,17 @@ import LogoutModal from '../../components/LogoutModal'; // Import modal yang sud
 
 const TabIcon = ({ icon, color, name, focused }) => {
   return (
-    <View className="flex items-center justify-center gap-2">
+    <View
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        width: 100,
+        height: 'auto',
+        gap: 2,
+      }}
+    >
       <Image
         source={icon}
         resizeMode="contain"
@@ -17,12 +27,7 @@ const TabIcon = ({ icon, color, name, focused }) => {
           tintColor: color,
         }}
       />
-      <Text
-        className={`${focused ? 'font-semibold' : 'font-regular'} text-xs`}
-        style={{ color: color }}
-      >
-        {name}
-      </Text>
+      <Text style={{ color: color, fontSize: 12 }}>{name}</Text>
     </View>
   );
 };
@@ -46,7 +51,7 @@ const TabLayout = () => {
           tabBarStyle: {
             backgroundColor: '#ffffff',
             borderTopWidth: 0,
-            height: 80,
+            height: 100,
             shadowColor: '#000',
             shadowOffset: { width: 0, height: -2 },
             shadowOpacity: 0.1,

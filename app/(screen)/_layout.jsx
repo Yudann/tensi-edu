@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { Text, TouchableOpacity } from 'react-native';
 
 const ScreenLayout = () => {
   return (
@@ -15,24 +16,82 @@ const ScreenLayout = () => {
       {/* Screen community */}
       <Stack.Screen
         name="community/index"
-        options={{
-          headerShown: true, // Header tetap ditampilkan
-          title: 'Community', // Title kustom untuk header
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          title: 'Community',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text
+                style={{
+                  color: 'black',
+                  padding: 10,
+                  fontWeight: 800,
+                  fontSize: 20,
+                }}
+              >
+                ←
+              </Text>
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="articles/[id]"
-        options={{
+        options={({ navigation }) => ({
           headerShown: true,
-          title: 'Back',
-        }}
+          title: '',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={{ color: 'black', padding: 10, fontWeight: 800 }}>
+                ← Back
+              </Text>
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="reminder/index"
-        options={{
+        options={({ navigation }) => ({
           headerShown: true,
-          title: 'Reminder',
-        }}
+          title: '', // Kosongkan jika ingin tombol back lebih dominan
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('(tabs)')}>
+              <Text
+                style={{
+                  color: 'black',
+                  padding: 10,
+                  fontWeight: 800,
+                  fontSize: 16,
+                }}
+              >
+                ← Back
+              </Text>
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="reminder/addReminder/index"
+        options={({ navigation }) => ({
+          headerShown: true,
+          title: '', // Kosongkan jika ingin tombol back lebih dominan
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('reminder/index')}
+            >
+              <Text
+                style={{
+                  color: 'black',
+                  padding: 10,
+                  fontWeight: 800,
+                  fontSize: 16,
+                }}
+              >
+                ← Back
+              </Text>
+            </TouchableOpacity>
+          ),
+        })}
       />
     </Stack>
   );

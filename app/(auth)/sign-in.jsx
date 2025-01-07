@@ -31,7 +31,7 @@ export default function Login() {
     setTimeout(() => {
       setSubmitting(false);
       router.replace('/Home');
-      Alert.alert('Success', 'Dummy login successful!');
+      Alert.alert('Success', 'Login successful!');
     }, 1000); // Simulasi loading
   };
 
