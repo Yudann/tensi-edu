@@ -16,54 +16,6 @@ This is a **React Native Expo** project created using [`create-expo-app`](https:
 
    ```bash
    npm install
-   ```
-
-2. Start The App
-   ```
-   npx expo start
-   ```
-
-You can run the app using:
-
-Expo Go for a quick preview on your phone.
-iOS simulator.
-Android emulator.
-
-.
-├── app/ # Main app folder
-│ ├── screens/ # Contains all screen components
-│ ├── navigation/ # Navigation setup (tab-based navigation)
-│ ├── components/ # Reusable components
-│ ├── constants/ # Shared constants (e.g., colors, styles)
-│ └── assets/ # Images and other static files
-├── tailwind.config.js # Tailwind CSS configuration
-├── commitlint.config.js # Commitlint rules for consistent commit messages
-└── README.md # Project documentation
-
-Berikut adalah README yang telah di-update sesuai dengan aplikasi yang kamu buat. Saya juga akan memberikan konfigurasi untuk commitlint di bagian bawah.
-
-README.md
-markdown
-Salin kode
-
-# Welcome to the Mobile Health Education App 👋
-
-This is a **React Native Expo** project created using [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). This app is designed to provide health education through videos, posters, and interactive features.
-
-## Features
-
-- 📱 **Mobile-first application** with responsive UI for both iOS and Android.
-- 🔀 **Navigation** using bottom tabs for easy access to various sections.
-- 🎥 Video library linking directly to YouTube for health education.
-- 🖼️ Poster gallery with educational content.
-- 🎨 Styling using **Tailwind CSS** and standard **StyleSheet** for React Native.
-
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
    Start the app
    ```
 
