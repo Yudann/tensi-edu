@@ -1,6 +1,14 @@
-# Welcome to your Expo app 👋
+# Welcome to the Mobile Health Education App 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a **React Native Expo** project created using [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). This app is designed to provide health education through videos, posters, and interactive features.
+
+## Features
+
+- 📱 **Mobile-first application** with responsive UI for both iOS and Android.
+- 🔀 **Navigation** using bottom tabs for easy access to various sections.
+- 🎥 Video library linking directly to YouTube for health education.
+- 🖼️ Poster gallery with educational content.
+- 🎨 Styling using **Tailwind CSS** and standard **StyleSheet** for React Native.
 
 ## Get started
 
@@ -10,41 +18,96 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
+2. Start The App
+   ```
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+You can run the app using:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Expo Go for a quick preview on your phone.
+iOS simulator.
+Android emulator.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+.
+├── app/ # Main app folder
+│ ├── screens/ # Contains all screen components
+│ ├── navigation/ # Navigation setup (tab-based navigation)
+│ ├── components/ # Reusable components
+│ ├── constants/ # Shared constants (e.g., colors, styles)
+│ └── assets/ # Images and other static files
+├── tailwind.config.js # Tailwind CSS configuration
+├── commitlint.config.js # Commitlint rules for consistent commit messages
+└── README.md # Project documentation
 
-## Get a fresh project
+Berikut adalah README yang telah di-update sesuai dengan aplikasi yang kamu buat. Saya juga akan memberikan konfigurasi untuk commitlint di bagian bawah.
 
-When you're ready, run:
+README.md
+markdown
+Salin kode
 
-```bash
-npm run reset-project
-```
+# Welcome to the Mobile Health Education App 👋
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This is a **React Native Expo** project created using [`create-expo-app`](https://www.npmjs.com/package/create-expo-app). This app is designed to provide health education through videos, posters, and interactive features.
 
-## Learn more
+## Features
 
-To learn more about developing your project with Expo, look at the following resources:
+- 📱 **Mobile-first application** with responsive UI for both iOS and Android.
+- 🔀 **Navigation** using bottom tabs for easy access to various sections.
+- 🎥 Video library linking directly to YouTube for health education.
+- 🖼️ Poster gallery with educational content.
+- 🎨 Styling using **Tailwind CSS** and standard **StyleSheet** for React Native.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Get started
 
-## Join the community
+1. Install dependencies
 
-Join our community of developers creating universal apps.
+   ```bash
+   npm install
+   Start the app
+   ```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+bash
+Salin kode
+npx expo start
+You can run the app using:
+
+Expo Go for a quick preview on your phone.
+iOS simulator.
+Android emulator.
+Directory structure
+plaintext
+Salin kode
+.
+├── app/ # Main app folder
+│ ├── screens/ # Contains all screen components
+│ ├── navigation/ # Navigation setup (tab-based navigation)
+│ ├── components/ # Reusable components
+│ ├── constants/ # Shared constants (e.g., colors, styles)
+│ └── assets/ # Images and other static files
+├── tailwind.config.js # Tailwind CSS configuration
+├── commitlint.config.js # Commitlint rules for consistent commit messages
+└── README.md # Project documentation
+
+Development tips
+File-based routing
+This project uses file-based routing provided by Expo Router. You can organize pages by adding new files inside the app/ directory.
+
+Tailwind CSS setup
+Tailwind CSS is integrated using the tailwindcss-react-native package for consistent and scalable styling. Learn more about the setup in their documentation.
+
+Commitlint
+To maintain a clean commit history, this project uses commitlint with the following rules:
+
+Use Conventional Commits format for your messages (e.g., feat: add video gallery).
+Learn more
+Explore these resources to learn more about the tools used in this project:
+
+Expo documentation: Learn more about React Native and Expo.
+Tailwind CSS React Native: Styling with Tailwind in React Native.
+React Navigation: Documentation for navigation.
+Community
+Join the React Native and Expo communities for additional help and support:
+
+Expo on GitHub
+React Native community
