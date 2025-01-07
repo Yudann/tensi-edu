@@ -7,10 +7,45 @@ const ScreenLayout = () => {
       {/* Screen utama */}
       <Stack.Screen
         name="BloodPressure/index"
-        options={{
-          headerShown: true, // Header tetap ditampilkan
-          title: 'Blood Pressure Tracker', // Title kustom untuk header
-        }}
+        options={({ navigation }) => ({
+          headerShown: true,
+          title: 'Blood Pressure Tracker',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('(tabs)')}>
+              <Text
+                style={{
+                  color: 'black',
+                  padding: 10,
+                  fontWeight: 800,
+                  fontSize: 20,
+                }}
+              >
+                ←
+              </Text>
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="BloodPressure/history/index"
+        options={({ navigation }) => ({
+          headerShown: true,
+          title: 'Blood Pressure History',
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text
+                style={{
+                  color: 'black',
+                  padding: 10,
+                  fontWeight: 800,
+                  fontSize: 20,
+                }}
+              >
+                ←
+              </Text>
+            </TouchableOpacity>
+          ),
+        })}
       />
 
       {/* Screen community */}

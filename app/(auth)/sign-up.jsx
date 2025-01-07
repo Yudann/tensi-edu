@@ -9,6 +9,7 @@ import {
   Alert,
   Image,
   StyleSheet,
+  ImageBackground,
 } from 'react-native';
 
 import { images } from '../../constants';
@@ -45,66 +46,75 @@ export default function Signup() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.backgroundContainer}>
-          <Image
-            source={require('../../assets/bg-main.jpg')} // Pastikan path gambar benar
-            style={styles.backgroundImage}
-          />
+    <ImageBackground
+      source={require('../../assets/bg-main.jpg')}
+      style={styles.background}
+      imageStyle={styles.fixedImage}
+    >
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          <View style={styles.backgroundContainer}>
+            <View style={styles.content}>
+              <Image
+                source={images.logo} // Pastikan logo juga ada di folder images
+                resizeMode="contain"
+                style={styles.logo}
+              />
 
-          <View style={styles.content}>
-            <Image
-              source={images.logo} // Pastikan logo juga ada di folder images
-              resizeMode="contain"
-              style={styles.logo}
-            />
+              <Text style={styles.title}>Sign Up to Tensi Edu</Text>
 
-            <Text style={styles.title}>Sign Up to Tensi Edu</Text>
+              <FormField
+                title="Username"
+                value={form.username}
+                handleChangeText={(e) => setForm({ ...form, username: e })}
+                otherStyles={styles.input}
+              />
 
-            <FormField
-              title="Username"
-              value={form.username}
-              handleChangeText={(e) => setForm({ ...form, username: e })}
-              otherStyles={styles.input}
-            />
+              <FormField
+                title="Email"
+                value={form.email}
+                handleChangeText={(e) => setForm({ ...form, email: e })}
+                otherStyles={styles.input}
+                keyboardType="email-address"
+              />
 
-            <FormField
-              title="Email"
-              value={form.email}
-              handleChangeText={(e) => setForm({ ...form, email: e })}
-              otherStyles={styles.input}
-              keyboardType="email-address"
-            />
+              <FormField
+                title="Password"
+                value={form.password}
+                handleChangeText={(e) => setForm({ ...form, password: e })}
+                otherStyles={styles.input}
+              />
 
-            <FormField
-              title="Password"
-              value={form.password}
-              handleChangeText={(e) => setForm({ ...form, password: e })}
-              otherStyles={styles.input}
-            />
+              <CustomButton
+                title="Sign Up"
+                handlePress={submit}
+                containerStyles={styles.button}
+                isLoading={isSubmitting}
+              />
 
-            <CustomButton
-              title="Sign Up"
-              handlePress={submit}
-              containerStyles={styles.button}
-              isLoading={isSubmitting}
-            />
-
-            <View style={styles.signupContainer}>
-              <Text style={styles.signupText}>Have an account already?</Text>
-              <Link href="/sign-in" style={styles.signupLink}>
-                Login
-              </Link>
+              <View style={styles.signupContainer}>
+                <Text style={styles.signupText}>Have an account already?</Text>
+                <Link href="/sign-in" style={styles.signupLink}>
+                  Login
+                </Link>
+              </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+  fixedImage: {
+    resizeMode: 'cover',
+  },
   container: {
     flex: 1,
   },
