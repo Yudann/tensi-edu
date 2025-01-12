@@ -18,12 +18,12 @@ import { CustomButton, FormField } from '../../components';
 export default function Login() {
   const [isSubmitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
-    email: '',
+    username: '',
     password: '',
   });
 
   const submitDummy = () => {
-    if (form.email === '' || form.password === '') {
+    if (form.username === '' || form.password === '') {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
@@ -31,7 +31,7 @@ export default function Login() {
 
     setTimeout(() => {
       setSubmitting(false);
-      router.replace('/Home');
+      router.replace('/home');
       Alert.alert('Success', 'Login successful!');
     }, 1000); // Simulasi loading
   };
@@ -55,11 +55,10 @@ export default function Login() {
               <Text style={styles.title}>Log in to Tensi Edu</Text>
 
               <FormField
-                title="Email"
-                value={form.email}
-                handleChangeText={(e) => setForm({ ...form, email: e })}
+                title="Username"
+                value={form.username}
+                handleChangeText={(e) => setForm({ ...form, username: e })}
                 otherStyles={styles.input}
-                keyboardType="email-address"
               />
 
               <FormField

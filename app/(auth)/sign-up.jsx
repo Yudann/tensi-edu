@@ -24,20 +24,19 @@ export default function Signup() {
   });
 
   const submit = async () => {
+    // Cek jika ada field yang kosong
     if (form.username === '' || form.email === '' || form.password === '') {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
+
     setSubmitting(true);
 
     try {
-      // Asumsikan createUser adalah fungsi untuk register pengguna
-      const result = await createUser(form.email, form.password, form.username);
-      // Set user di context
-      setUser(result);
-      setIsLogged(true);
-
-      router.replace('/Home');
+      // Simulasi pengiriman data atau proses sign-up
+      Alert.alert('Success', 'You have successfully signed up');
+      // Arahkan ke halaman home setelah berhasil
+      router.replace('/sign-in');
     } catch (error) {
       Alert.alert('Error', error.message);
     } finally {

@@ -62,7 +62,7 @@ const TabLayout = () => {
         }}
       >
         <Tabs.Screen
-          name="Home"
+          name="home"
           options={{
             title: 'Home',
             headerShown: false,
@@ -70,7 +70,7 @@ const TabLayout = () => {
               <TabIcon
                 icon={icons.home}
                 color={color}
-                name="Home"
+                name="home"
                 focused={focused}
               />
             ),
